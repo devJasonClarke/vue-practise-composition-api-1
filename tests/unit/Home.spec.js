@@ -8,7 +8,7 @@ describe("Home.vue", () => {
     expect(wrapper).toBeTruthy();
   });
 
-  test("Wrapper contains word", async () => {
+  test("Wrapper contains updated amount", async () => {
     const wrapper = mount(Home);
 
     const update = () => (wrapper.vm.capacity = 55);

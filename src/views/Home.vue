@@ -18,27 +18,28 @@
 </template>
 
 <script>
-import { ref, computed } from "vue";
+import { reactive, computed, toRefs } from "vue";
 export default {
   name: "Home",
   setup() {
-    const capacity = ref(3);
-    const attending = ref(["Jason", "Jon", "lou", "Kanye"]);
-    const spacesLeft = computed(() => {
-      return capacity.value - attending.value.length;
+    const event = reactive({
+      capacity: 3,
+      attending: ["Jason", "Jon", "lou", "Kanye"],
+      spacesLeft: computed(() => {
+        return event.capacity - event.attending.length;
+      }),
     });
+
     function increaseCapacity() {
-      capacity.value++;
+      event.capacity++;
     }
 
     function decreaseCapacity() {
-      capacity.value--;
+      event.capacity--;
     }
 
     return {
-      capacity,
-      attending,
-      spacesLeft,
+      ...toRefs(event),
       increaseCapacity,
       decreaseCapacity,
     };
